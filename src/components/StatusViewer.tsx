@@ -15,7 +15,7 @@ export function StatusViewer({ children }: StatusViewerProps) {
 			bgGradient="linear(to-b, #9B33CC, #7933CC)"
 			rounded={10}
 		>
-			<Text color="white" size="24px" fontFamily="jua">
+			<Text color="white" fontSize={24} fontFamily="jua, sans-serif">
 				{children}
 			</Text>
 		</Box>

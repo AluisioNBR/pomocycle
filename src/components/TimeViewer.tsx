@@ -13,10 +13,16 @@ export function TimeViewer({ children }: TimeViewerProps) {
 			display="flex"
 			alignItems="center"
 			justifyContent="center"
-			bgGradient="linear(to-b, #09B33CC, #7933CC)"
-			rounded={10}
+			w="16rem"
+			h="10rem"
+			bgGradient="linear(to-b, #9B33CC, #7933CC)"
+			rounded={35}
 		>
-			<Heading color="white">
+			<Heading
+				color="white"
+				fontSize={60}
+				fontFamily="Josefin Sans, sans-serif"
+			>
 				{minutes}:{seconds}
 			</Heading>
 		</Box>
