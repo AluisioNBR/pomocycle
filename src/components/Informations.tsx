@@ -1,4 +1,4 @@
-import { HStack, Text } from '@chakra-ui/react'
+import { VStack, Text } from '@chakra-ui/react'
 
 interface InformationsProps {
 	cycles: number
@@ -8,7 +8,7 @@ interface InformationsProps {
 
 export function Informations({ cycles, work, rest }: InformationsProps) {
 	return (
-		<HStack>
+		<VStack>
 			<Text>{cycles} Ciclos</Text>
 
 			<Text>{work}min de Trabalho</Text>
@@ -16,6 +16,6 @@ export function Informations({ cycles, work, rest }: InformationsProps) {
 			<hr />
 
 			<Text>{rest}min de Descanso</Text>
-		</HStack>
+		</VStack>
 	)
 }
