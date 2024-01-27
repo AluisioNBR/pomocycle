@@ -3,10 +3,17 @@ import { MenuButton } from '@/components/MenuButton'
 import { StartButton } from '@/components/StartButton'
 import { StatusViewer } from '@/components/StatusViewer'
 import { TimeViewer } from '@/components/TimeViewer'
+import { VStack } from '@chakra-ui/react'
 
 export default function Home() {
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-between p-24">
+		<VStack
+			as="main"
+			alignItems="center"
+			justifyContent="space-between"
+			minHeight="100vh"
+			p="6rem"
+		>
 			<MenuButton />
 
 			<StatusViewer>STATUS</StatusViewer>
@@ -16,6 +23,6 @@ export default function Home() {
 			<StartButton />
 
 			<Informations cycles={4} work={25} rest={5} />
-		</main>
+		</VStack>
 	)
 }

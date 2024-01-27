@@ -8,14 +8,38 @@ interface InformationsProps {
 
 export function Informations({ cycles, work, rest }: InformationsProps) {
 	return (
-		<VStack>
-			<Text>{cycles} Ciclos</Text>
+		<VStack
+			alignItems="center"
+			justifyContent="center"
+			w="16rem"
+			h="10rem"
+			bg="#D9D9D9"
+			rounded={25}
+		>
+			<InformationText fontSize={25}>{`${cycles} Ciclos`}</InformationText>
 
-			<Text>{work}min de Trabalho</Text>
+			<InformationText fontSize={15}>
+				{`${work} min de Trabalho`}
+			</InformationText>
 
-			<hr />
+			<hr className="bg-[#5F33CC]" />
 
-			<Text>{rest}min de Descanso</Text>
+			<InformationText fontSize={15}>
+				{`${rest} min de Descanso`}
+			</InformationText>
 		</VStack>
+	)
+}
+
+interface InformationTextProps {
+	children: string
+	fontSize: number
+}
+
+function InformationText({ children, fontSize }: InformationTextProps) {
+	return (
+		<Text fontSize={fontSize} color="#5F33CC" fontFamily="Jua, sans-serif">
+			{children}
+		</Text>
 	)
 }
