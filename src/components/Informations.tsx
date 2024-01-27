@@ -1,3 +1,4 @@
+import { jua } from '@/app/fonts'
 import { VStack, Text } from '@chakra-ui/react'
 
 interface InformationsProps {
@@ -11,7 +12,7 @@ export function Informations({ cycles, work, rest }: InformationsProps) {
 		<VStack
 			alignItems="center"
 			justifyContent="center"
-			w="16rem"
+			w="18rem"
 			h="10rem"
 			bg="#D9D9D9"
 			rounded={25}
@@ -38,7 +39,7 @@ interface InformationTextProps {
 
 function InformationText({ children, fontSize }: InformationTextProps) {
 	return (
-		<Text fontSize={fontSize} color="#5F33CC" fontFamily="Jua, sans-serif">
+		<Text fontSize={fontSize} color="#5F33CC" className={jua.className}>
 			{children}
 		</Text>
 	)

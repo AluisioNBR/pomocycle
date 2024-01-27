@@ -1,3 +1,4 @@
+import { jua } from '@/app/fonts'
 import { Box, Text } from '@chakra-ui/react'
 
 interface StatusViewerProps {
@@ -15,7 +16,7 @@ export function StatusViewer({ children }: StatusViewerProps) {
 			bgGradient="linear(to-b, #9B33CC, #7933CC)"
 			rounded={10}
 		>
-			<Text color="white" fontSize={24} fontFamily="jua, sans-serif">
+			<Text color="white" fontSize={24} className={jua.className}>
 				{children}
 			</Text>
 		</Box>
