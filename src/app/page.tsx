@@ -8,6 +8,14 @@ import { Viewer } from '@/components/Viewer'
 
 export default function Home() {
 	const [cycles, setCycles] = useState<Cycle[]>(standartCycles)
+	const [currentCycle, setCurrentCycle] = useState<Cycle>(cycles[0])
+	const [isRunning, setIsRunning] = useState(false)
+
+	const startPomo = () => {
+		setIsRunning(true)
+		cycles.forEach((cycle) => {})
+		// setTimeout()
+	}
 
 	return (
 		<VStack
@@ -19,9 +27,11 @@ export default function Home() {
 		>
 			<MenuButton />
 
-			<Viewer>{cycles}</Viewer>
+			<Viewer isRunning={isRunning} setIsRunning={setIsRunning}>
+				{currentCycle}
+			</Viewer>
 
-			<StartButton />
+			<StartButton onClick={startPomo} visibility={!isRunning} />
 
 			<Informations cycles={4} work={25} rest={5} />
 		</VStack>

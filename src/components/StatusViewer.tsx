@@ -2,7 +2,8 @@ import { jua } from '@/app/fonts'
 import { Box, Text } from '@chakra-ui/react'
 
 interface StatusViewerProps {
-	children: string
+	children: 'stopped' | 'in progress' | 'done'
+	task: 'work' | 'rest'
 }
 
 export function StatusViewer({ children }: StatusViewerProps) {

@@ -1,6 +1,11 @@
 import { Button, Image } from '@chakra-ui/react'
 
-export function StartButton() {
+interface StartButtonProps {
+	onClick: () => void
+	visibility: boolean
+}
+
+export function StartButton({ onClick }: StartButtonProps) {
 	return (
 		<Button
 			display="flex"
@@ -12,6 +17,7 @@ export function StartButton() {
 			bgGradient="linear(to-b, #9B33CC, #7933CC)"
 			_hover={{ backgroundColor: '#7933CC' }}
 			rounded={999}
+			onClick={onClick}
 		>
 			<Image src="playIcon.png" alt="Botão de Início" title="Botão de Início" />
 		</Button>
