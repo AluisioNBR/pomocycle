@@ -4,8 +4,12 @@ import { StartButton } from '@/components/StartButton'
 import { StatusViewer } from '@/components/StatusViewer'
 import { TimeViewer } from '@/components/TimeViewer'
 import { VStack } from '@chakra-ui/react'
+import { useState } from 'react'
+import { Cycle, standartCycles } from './cycles'
 
 export default function Home() {
+	const [cycles, setCycles] = useState<Cycle[]>(standartCycles)
+
 	return (
 		<VStack
 			as="main"
