@@ -1,11 +1,10 @@
 import { Informations } from '@/components/Informations'
 import { MenuButton } from '@/components/MenuButton'
 import { StartButton } from '@/components/StartButton'
-import { StatusViewer } from '@/components/StatusViewer'
-import { TimeViewer } from '@/components/TimeViewer'
 import { VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import { Cycle, standartCycles } from './cycles'
+import { Viewer } from '@/components/Viewer'
 
 export default function Home() {
 	const [cycles, setCycles] = useState<Cycle[]>(standartCycles)
@@ -20,9 +19,7 @@ export default function Home() {
 		>
 			<MenuButton />
 
-			<StatusViewer>STATUS</StatusViewer>
-
-			<TimeViewer>{1500}</TimeViewer>
+			<Viewer>{cycles}</Viewer>
 
 			<StartButton />
 
