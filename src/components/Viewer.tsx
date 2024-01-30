@@ -12,7 +12,7 @@ interface ViewerProps {
 export function Viewer({ children, isRunning, setIsRunning }: ViewerProps) {
 	return (
 		<>
-			<StatusViewer task={children.task}>{children.status}</StatusViewer>
+			<StatusViewer isRunning={isRunning}>{children.task}</StatusViewer>
 
 			<TimeViewer isRunning={isRunning} setIsRunning={setIsRunning}>
 				{children.time}

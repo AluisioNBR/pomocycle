@@ -14,7 +14,6 @@ export default function Home() {
 
 	const startPomo = () => {
 		setIsRunning(true)
-		cycles.forEach((cycle) => {})
 		// setTimeout()
 	}
 
