@@ -1,7 +1,7 @@
 import { Cycle } from '@/app/cycles'
 import { StatusViewer } from '@/components/StatusViewer'
 import { TimeViewer } from '@/components/TimeViewer'
-import { Dispatch } from 'react'
+import { Dispatch, useEffect } from 'react'
 
 interface ViewerProps {
 	children: Cycle
@@ -12,10 +12,15 @@ interface ViewerProps {
 export function Viewer({ children, isRunning, setIsRunning }: ViewerProps) {
 	return (
 		<>
-			<StatusViewer isRunning={isRunning}>{children.task}</StatusViewer>
+			<StatusViewer isRunning={children ? isRunning : false}>
+				{children ? children.task : 'rest'}
+			</StatusViewer>
 
-			<TimeViewer isRunning={isRunning} setIsRunning={setIsRunning}>
-				{children.time}
+			<TimeViewer
+				isRunning={children ? isRunning : false}
+				setIsRunning={setIsRunning}
+			>
+				{children ? children.time : 0}
 			</TimeViewer>
 		</>
 	)
