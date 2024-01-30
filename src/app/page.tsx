@@ -1,3 +1,4 @@
+'use client'
 import { Informations } from '@/components/Informations'
 import { MenuButton } from '@/components/MenuButton'
 import { StartButton } from '@/components/StartButton'
