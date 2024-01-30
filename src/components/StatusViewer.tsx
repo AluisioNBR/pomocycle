@@ -18,7 +18,7 @@ export function StatusViewer({ children, isRunning }: StatusViewerProps) {
 			rounded={10}
 		>
 			<Text color="white" fontSize={24} className={jua.className}>
-				{!children
+				{!isRunning
 					? 'Parado'
 					: children == 'work'
 					? 'Trabalhando'
