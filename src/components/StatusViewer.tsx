@@ -6,7 +6,7 @@ interface StatusViewerProps {
 	task: 'work' | 'rest'
 }
 
-export function StatusViewer({ children }: StatusViewerProps) {
+export function StatusViewer({ children, task }: StatusViewerProps) {
 	return (
 		<Box
 			display="flex"
@@ -18,7 +18,11 @@ export function StatusViewer({ children }: StatusViewerProps) {
 			rounded={10}
 		>
 			<Text color="white" fontSize={24} className={jua.className}>
-				{children}
+				{children == 'stopped'
+					? 'Parado'
+					: task == 'work'
+					? 'Trabalhando'
+					: 'Descansando'}
 			</Text>
 		</Box>
 	)

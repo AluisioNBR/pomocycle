@@ -19,23 +19,29 @@ export function TimeViewer({
 
 	useEffect(() => {
 		setTimerValue(children)
-		setMinutes(`${children / 60}`)
+		setMinutes(`${Math.floor(children / 60)}`)
 		setSeconds('00')
 	}, [children])
 
 	const decrementTimer = useCallback(() => {
-		setTimerValue((prevTimer) => prevTimer - 1)
-		const timerMinutes = timerValue / 60
-		const timerMinutesInt = Math.floor(timerMinutes)
-		const timerSeconds = Math.ceil((timerMinutes - timerMinutesInt) * 60)
+		setTimerValue((prevTimer) => {
+			const nextTime = prevTimer - 1
 
-		setMinutes(
-			`${timerMinutes}`.length == 2 ? `${timerMinutes}` : `0${timerMinutes}`
-		)
-		setSeconds(
-			`${timerSeconds}`.length == 2 ? `${timerSeconds}` : `0${timerSeconds}`
-		)
-	}, [timerValue])
+			const timerMinutes = nextTime / 60
+			const timerMinutesInt = Math.floor(timerMinutes)
+			const timerSeconds = Math.ceil((timerMinutes - timerMinutesInt) * 60)
+
+			setMinutes(
+				`${timerMinutesInt}`.length == 2
+					? `${timerMinutesInt}`
+					: `0${timerMinutesInt}`
+			)
+			setSeconds(
+				`${timerSeconds}`.length == 2 ? `${timerSeconds}` : `0${timerSeconds}`
+			)
+			return nextTime
+		})
+	}, [])
 
 	useEffect(() => {
 		if (isRunning) {
