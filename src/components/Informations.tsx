@@ -1,13 +1,8 @@
+import { CycleInfos } from '@/app/cycles'
 import { jua } from '@/app/fonts'
 import { VStack, Text } from '@chakra-ui/react'
 
-interface InformationsProps {
-	cycles: number
-	work: number
-	rest: number
-}
-
-export function Informations({ cycles, work, rest }: InformationsProps) {
+export function Informations({ cycles, work, rest }: CycleInfos) {
 	return (
 		<VStack
 			alignItems="center"

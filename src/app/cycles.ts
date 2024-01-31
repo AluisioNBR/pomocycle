@@ -1,11 +1,16 @@
-export interface Cycle {
-	task: 'work' | 'rest'
-	time: number
+export interface CycleInfos {
+	work: number
+	rest: number
+	cycles: number
 }
 
-export const standartCycles: Cycle[] = [
-	{ task: 'work', time: 1500 },
+export const standartCycleInfo: CycleInfos = {
+	cycles: 4,
+	work: 25,
+	rest: 5,
+}
+
+/*
+{ task: 'work', time: 1500 },
 	{ task: 'rest', time: 300 },
-	{ task: 'work', time: 1500 },
-	{ task: 'rest', time: 300 },
-]
+*/

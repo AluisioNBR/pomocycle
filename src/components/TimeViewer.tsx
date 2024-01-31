@@ -21,16 +21,6 @@ export function TimeViewer({
 		updateTimer(children)
 	}, [children])
 
-	const decrementTimer = useCallback(() => {
-		setTimerValue((prevTimer) => {
-			const nextTime = prevTimer - 1
-
-			updateTimer(nextTime)
-
-			return nextTime
-		})
-	}, [])
-
 	const updateTimer = (time: number) => {
 		const timerMinutes = time / 60
 		const timerMinutesInt = Math.floor(timerMinutes)
@@ -45,6 +35,16 @@ export function TimeViewer({
 			`${timerSeconds}`.length == 2 ? `${timerSeconds}` : `0${timerSeconds}`
 		)
 	}
+
+	const decrementTimer = useCallback(() => {
+		setTimerValue((prevTimer) => {
+			const nextTime = prevTimer - 1
+
+			updateTimer(nextTime)
+
+			return nextTime
+		})
+	}, [])
 
 	useEffect(() => {
 		if (isRunning) {

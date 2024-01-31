@@ -1,26 +1,35 @@
-import { Cycle } from '@/app/cycles'
+import { CycleInfos } from '@/app/cycles'
 import { StatusViewer } from '@/components/StatusViewer'
 import { TimeViewer } from '@/components/TimeViewer'
 import { Dispatch, useEffect } from 'react'
 
 interface ViewerProps {
-	children: Cycle
+	children: CycleInfos
+	cycle: number
 	isRunning: boolean
 	setIsRunning: Dispatch<boolean>
 }
 
-export function Viewer({ children, isRunning, setIsRunning }: ViewerProps) {
+export type StatusType = 'work' | 'rest'
+
+export function Viewer({
+	children,
+	cycle,
+	isRunning,
+	setIsRunning,
+}: ViewerProps) {
+	const status: StatusType = cycle % 2 == 0 ? 'work' : 'rest'
+	const time = status == 'work' ? children.work : children.rest
+
 	return (
 		<>
-			<StatusViewer isRunning={children ? isRunning : false}>
-				{children ? children.task : 'rest'}
-			</StatusViewer>
+			<StatusViewer isRunning={isRunning}>{status}</StatusViewer>
 
 			<TimeViewer
 				isRunning={children ? isRunning : false}
 				setIsRunning={setIsRunning}
 			>
-				{children ? children.time : 0}
+				{time * 60}
 			</TimeViewer>
 		</>
 	)

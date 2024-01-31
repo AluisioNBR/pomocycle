@@ -1,8 +1,9 @@
 import { jua } from '@/app/fonts'
 import { Box, Text } from '@chakra-ui/react'
+import { StatusType } from './Viewer'
 
 interface StatusViewerProps {
-	children: 'work' | 'rest'
+	children: StatusType
 	isRunning: boolean
 }
 
