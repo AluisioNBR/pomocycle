@@ -3,34 +3,70 @@ import { Informations } from '@/components/Informations'
 import { MenuButton } from '@/components/MenuButton'
 import { StartButton } from '@/components/StartButton'
 import { VStack } from '@chakra-ui/react'
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { CycleInfos, standartCycleInfo } from './cycles'
+import { useCallback, useEffect, useState } from 'react'
 import { Viewer } from '@/components/Viewer'
 
+const Info = {
+	cycles: 4,
+	work: 25,
+	rest: 5,
+}
+
 export default function Home() {
-	const [cycleInfo, setCycleInfo] = useState<CycleInfos>(standartCycleInfo)
-	const [cycle, setCycle] = useState(0)
-	const [isRunning, setIsRunning] = useState(false)
-	const minuntesToMiliSecondsConst = useMemo(() => 60 * 1000, [])
+	const [cycleInfo, setCycleInfo] = useState(Info)
+	const [minutes, setMinutes] = useState(cycleInfo.work)
+	const [seconds, setSeconds] = useState(0)
+	const [status, setStatus] = useState('work')
+	const [isActive, setIsActive] = useState(false)
+	const [cyclesCounter, setCyclesCounter] = useState(0)
 
-	const startPomo = useCallback(() => {
-		setIsRunning(true)
+	const toggleTimer = () => {
+		setIsActive(!isActive)
+	}
 
-		const timeout =
-			cycle % 2 == 0
-				? cycleInfo.work * minuntesToMiliSecondsConst
-				: cycleInfo.rest * minuntesToMiliSecondsConst
+	const reset = useCallback(() => {
+		setCyclesCounter((prevState) => {
+			let newCounter = prevState + 1
 
-		setTimeout(() => {
-			if (cycle < cycleInfo.cycles) {
-				setCycle((prevState) => prevState + 1)
-				startPomo()
-			} else {
-				setCycle(0)
-				setIsRunning(false)
+			if (!(newCounter < cycleInfo.cycles)) {
+				setIsActive(false)
+				newCounter = 0
 			}
-		}, timeout)
-	}, [cycleInfo, cycle, minuntesToMiliSecondsConst])
+
+			return newCounter
+		})
+
+		setStatus((prevStatus) => {
+			const newStatus = prevStatus === 'work' ? 'rest' : 'work'
+
+			setMinutes(() => (newStatus === 'work' ? cycleInfo.work : cycleInfo.rest))
+
+			return newStatus
+		})
+		setSeconds(0)
+	}, [cycleInfo])
+
+	useEffect(() => {
+		let intervalId: string | number | NodeJS.Timeout | undefined
+		if (isActive) {
+			intervalId = setInterval(() => {
+				if (seconds === 0) {
+					if (minutes === 0) {
+						reset()
+					} else {
+						setMinutes(minutes - 1)
+						setSeconds(59)
+					}
+				} else {
+					setSeconds(seconds - 1)
+				}
+			}, 1000)
+		} else {
+			clearInterval(intervalId)
+		}
+
+		return () => clearInterval(intervalId)
+	}, [isActive, minutes, seconds, reset])
 
 	return (
 		<VStack
@@ -42,11 +78,11 @@ export default function Home() {
 		>
 			<MenuButton />
 
-			<Viewer isRunning={isRunning} setIsRunning={setIsRunning} cycle={cycle}>
-				{cycleInfo}
+			<Viewer isRunning={isActive} min={minutes} sec={seconds}>
+				{status}
 			</Viewer>
 
-			<StartButton onClick={startPomo} visibility={!isRunning} />
+			<StartButton onClick={toggleTimer} visibility={!isActive} />
 
 			<Informations
 				cycles={cycleInfo.cycles}

@@ -1,62 +1,12 @@
 import { josefin } from '@/app/fonts'
 import { Box, Heading } from '@chakra-ui/react'
-import { Dispatch, useCallback, useEffect, useState } from 'react'
 
 interface TimeViewerProps {
-	children: number
-	isRunning: boolean
-	setIsRunning: Dispatch<boolean>
+	min: number
+	sec: number
 }
 
-export function TimeViewer({
-	children,
-	isRunning,
-	setIsRunning,
-}: TimeViewerProps) {
-	const [timerValue, setTimerValue] = useState(children)
-	const [minutes, setMinutes] = useState('25')
-	const [seconds, setSeconds] = useState('00')
-
-	useEffect(() => {
-		updateTimer(children)
-	}, [children])
-
-	const updateTimer = (time: number) => {
-		const timerMinutes = time / 60
-		const timerMinutesInt = Math.floor(timerMinutes)
-		const timerSeconds = Math.ceil((timerMinutes - timerMinutesInt) * 60)
-
-		setMinutes(
-			`${timerMinutesInt}`.length == 2
-				? `${timerMinutesInt}`
-				: `0${timerMinutesInt}`
-		)
-		setSeconds(
-			`${timerSeconds}`.length == 2 ? `${timerSeconds}` : `0${timerSeconds}`
-		)
-	}
-
-	const decrementTimer = useCallback(() => {
-		setTimerValue((prevTimer) => {
-			const nextTime = prevTimer - 1
-
-			updateTimer(nextTime)
-
-			return nextTime
-		})
-	}, [])
-
-	useEffect(() => {
-		if (isRunning) {
-			const timerInterval = setInterval(decrementTimer, 1000)
-
-			setTimeout(() => {
-				clearInterval(timerInterval)
-				setIsRunning(false)
-			}, children * 1000)
-		}
-	}, [isRunning, children, setIsRunning, decrementTimer])
-
+export function TimeViewer({ min, sec }: TimeViewerProps) {
 	return (
 		<Box
 			display="flex"
@@ -68,7 +18,7 @@ export function TimeViewer({
 			rounded={35}
 		>
 			<Heading color="white" fontSize={60} className={josefin.className}>
-				{minutes}:{seconds}
+				{min < 10 ? `0${min}` : min}:{sec < 10 ? `0${sec}` : sec}
 			</Heading>
 		</Box>
 	)

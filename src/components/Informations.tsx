@@ -1,6 +1,11 @@
-import { CycleInfos } from '@/app/cycles'
 import { jua } from '@/app/fonts'
 import { VStack, Text } from '@chakra-ui/react'
+
+interface CycleInfos {
+	cycles: number
+	work: number
+	rest: number
+}
 
 export function Informations({ cycles, work, rest }: CycleInfos) {
 	return (
