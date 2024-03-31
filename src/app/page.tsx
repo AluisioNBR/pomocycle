@@ -8,8 +8,8 @@ import { Viewer } from '@/components/Viewer'
 
 const Info = {
 	cycles: 4,
-	work: 25,
-	rest: 5,
+	work: 2,
+	rest: 1,
 }
 
 export default function Home() {
@@ -18,9 +18,11 @@ export default function Home() {
 	const [seconds, setSeconds] = useState(0)
 	const [status, setStatus] = useState('work')
 	const [isActive, setIsActive] = useState(false)
+	const [isFinished, setIsFinished] = useState(false)
 	const [cyclesCounter, setCyclesCounter] = useState(0)
 
-	const toggleTimer = () => {
+	const startTimer = () => {
+		setIsFinished(false)
 		setIsActive(!isActive)
 	}
 
@@ -75,19 +77,23 @@ export default function Home() {
 			justifyContent="space-between"
 			minHeight="100vh"
 			p="6rem"
+			bgGradient={status === 'rest' ? 'linear(to-b, #9B33CC, #7933CC)' : '#fff'}
 		>
-			<MenuButton />
+			<MenuButton status={status} />
 
-			<Viewer isRunning={isActive} min={minutes} sec={seconds}>
+			<Viewer status={status} isActive={isActive} min={minutes} sec={seconds}>
 				{status}
 			</Viewer>
 
-			<StartButton onClick={toggleTimer} visibility={!isActive} />
+			<StartButton onClick={startTimer} isActive={!isActive} />
 
 			<Informations
 				cycles={cycleInfo.cycles}
+				counter={cyclesCounter}
 				work={cycleInfo.work}
 				rest={cycleInfo.rest}
+				isActive={!isActive}
+				isFinished={isFinished}
 			/>
 		</VStack>
 	)

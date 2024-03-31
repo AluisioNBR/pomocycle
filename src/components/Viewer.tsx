@@ -1,22 +1,24 @@
 import { StatusViewer } from '@/components/StatusViewer'
 import { TimeViewer } from '@/components/TimeViewer'
-import { Dispatch } from 'react'
 
 interface ViewerProps {
+	status: string
 	children: string
 	min: number
 	sec: number
-	isRunning: boolean
+	isActive: boolean
 }
 
 export type StatusType = 'work' | 'rest'
 
-export function Viewer({ children, min, sec, isRunning }: ViewerProps) {
+export function Viewer({ status, children, min, sec, isActive }: ViewerProps) {
 	return (
 		<>
-			<StatusViewer isRunning={isRunning}>{children}</StatusViewer>
+			<StatusViewer status={status} isActive={isActive}>
+				{children}
+			</StatusViewer>
 
-			<TimeViewer min={min} sec={sec} />
+			<TimeViewer status={status} min={min} sec={sec} />
 		</>
 	)
 }

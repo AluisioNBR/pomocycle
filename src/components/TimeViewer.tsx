@@ -2,11 +2,12 @@ import { josefin } from '@/app/fonts'
 import { Box, Heading } from '@chakra-ui/react'
 
 interface TimeViewerProps {
+	status: string
 	min: number
 	sec: number
 }
 
-export function TimeViewer({ min, sec }: TimeViewerProps) {
+export function TimeViewer({ status, min, sec }: TimeViewerProps) {
 	return (
 		<Box
 			display="flex"
@@ -14,7 +15,9 @@ export function TimeViewer({ min, sec }: TimeViewerProps) {
 			justifyContent="center"
 			w="18rem"
 			h="10rem"
-			bgGradient="linear(to-b, #9B33CC, #7933CC)"
+			bgGradient={
+				status === 'work' ? 'linear(to-b, #9B33CC, #7933CC)' : '#0000'
+			}
 			rounded={35}
 		>
 			<Heading color="white" fontSize={60} className={josefin.className}>

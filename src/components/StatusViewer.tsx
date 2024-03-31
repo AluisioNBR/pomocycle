@@ -2,11 +2,16 @@ import { jua } from '@/app/fonts'
 import { Box, Text } from '@chakra-ui/react'
 
 interface StatusViewerProps {
+	status: string
 	children: string
-	isRunning: boolean
+	isActive: boolean
 }
 
-export function StatusViewer({ children, isRunning }: StatusViewerProps) {
+export function StatusViewer({
+	status,
+	children,
+	isActive,
+}: StatusViewerProps) {
 	return (
 		<Box
 			display="flex"
@@ -14,11 +19,19 @@ export function StatusViewer({ children, isRunning }: StatusViewerProps) {
 			justifyContent="center"
 			w="9.56rem"
 			h="2.62rem"
-			bgGradient="linear(to-b, #9B33CC, #7933CC)"
+			bgGradient={
+				status === 'work'
+					? 'linear(to-b, #9B33CC, #7933CC)'
+					: 'linear(to-b, #fff, #fff)'
+			}
 			rounded={10}
 		>
-			<Text color="white" fontSize={24} className={jua.className}>
-				{!isRunning
+			<Text
+				color={status === 'work' ? 'white' : '#7933CC'}
+				fontSize={24}
+				className={jua.className}
+			>
+				{!isActive
 					? 'Parado'
 					: children == 'work'
 					? 'Trabalhando'
