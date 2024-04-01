@@ -19,8 +19,10 @@ export function Informations({
 	isActive,
 	isFinished,
 }: CycleInfos) {
-	const workTime = useMemo(() => work * cycles, [work, cycles])
-	const restTime = useMemo(() => rest * (cycles - 1), [rest, cycles])
+	const workMinutes = useMemo(() => work * cycles, [work, cycles])
+	const restMinutes = useMemo(() => rest * (cycles - 1), [rest, cycles])
+
+	const workHours = useMemo(() => workMinutes / 60, [workMinutes])
 
 	return (
 		<VStack
@@ -33,7 +35,7 @@ export function Informations({
 		>
 			<InformationText fontSize={25}>
 				{isFinished
-					? `${cycles} Ciclos: ${Math.floor((workTime + restTime) / 60)}`
+					? `${cycles} Ciclos: ${Math.floor((workMinutes + restMinutes) / 60)}`
 					: isActive
 					? `${cycles} Ciclos`
 					: `Ciclo: ${counter + 1}`}
@@ -42,15 +44,15 @@ export function Informations({
 			{isFinished ? (
 				<>
 					<InformationText fontSize={15}>
-						{`Você trabalhou por:\n\n${Math.floor(workTime / 60)} HORAS ${
-							`${workTime / 60}`.split('.')[1]
-						} E MINUTOS!`}
+						{`Você trabalhou por:\n\n${Math.floor(workHours)} HORAS ${Math.ceil(
+							(workHours - Math.floor(workHours)) * 60
+						)} E MINUTOS!`}
 					</InformationText>
 
 					<hr className="bg-[#5F33CC]" />
 
 					<InformationText fontSize={15}>
-						{`${rest} min de Descanso`}
+						{`Você descansou por:\n\n${restMinutes} MINUTOS!`}
 					</InformationText>
 				</>
 			) : isActive ? (

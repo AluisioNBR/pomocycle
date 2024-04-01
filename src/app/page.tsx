@@ -8,8 +8,8 @@ import { Viewer } from '@/components/Viewer'
 
 const Info = {
 	cycles: 4,
-	work: 2,
-	rest: 1,
+	work: 25,
+	rest: 5,
 }
 
 export default function Home() {
@@ -35,7 +35,7 @@ export default function Home() {
 				newCounter = 0
 			}
 
-			return newCounter
+			return status === 'rest' ? newCounter : prevState
 		})
 
 		setStatus((prevStatus) => {
@@ -46,7 +46,7 @@ export default function Home() {
 			return newStatus
 		})
 		setSeconds(0)
-	}, [cycleInfo])
+	}, [cycleInfo, status])
 
 	useEffect(() => {
 		let intervalId: string | number | NodeJS.Timeout | undefined
@@ -81,7 +81,13 @@ export default function Home() {
 		>
 			<MenuButton status={status} />
 
-			<Viewer status={status} isActive={isActive} min={minutes} sec={seconds}>
+			<Viewer
+				status={status}
+				isActive={isActive}
+				isFinished={isFinished}
+				min={minutes}
+				sec={seconds}
+			>
 				{status}
 			</Viewer>
 
@@ -93,6 +99,12 @@ export default function Home() {
 				work={cycleInfo.work}
 				rest={cycleInfo.rest}
 				isActive={!isActive}
+				isFinished={isFinished}
+			/>
+
+			<StartButton
+				onClick={startTimer}
+				isActive={isFinished}
 				isFinished={isFinished}
 			/>
 		</VStack>

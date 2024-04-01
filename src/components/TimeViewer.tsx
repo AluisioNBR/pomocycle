@@ -5,9 +5,10 @@ interface TimeViewerProps {
 	status: string
 	min: number
 	sec: number
+	isFinished: boolean
 }
 
-export function TimeViewer({ status, min, sec }: TimeViewerProps) {
+export function TimeViewer({ status, min, sec, isFinished }: TimeViewerProps) {
 	return (
 		<Box
 			display="flex"
@@ -21,7 +22,9 @@ export function TimeViewer({ status, min, sec }: TimeViewerProps) {
 			rounded={35}
 		>
 			<Heading color="white" fontSize={60} className={josefin.className}>
-				{min < 10 ? `0${min}` : min}:{sec < 10 ? `0${sec}` : sec}
+				{isFinished
+					? 'Parabéns!'
+					: `${min < 10 ? `0${min}` : min}:${sec < 10 ? `0${sec}` : sec}`}
 			</Heading>
 		</Box>
 	)
