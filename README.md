@@ -36,11 +36,29 @@
 
 <h2 id="about">📖 Sobre</h2>
 
+Bem-vindo ao Pomocycle – sua ferramenta definitiva de produtividade! O Pomocycle é um site de relógio Pomodoro inovador, projetado para ajudar você a maximizar seu foco e eficiência. Com ciclos de trabalho e descanso totalmente configuráveis, o Pomocycle adapta-se às suas necessidades, proporcionando uma experiência personalizada de gerenciamento de tempo.
+
+### Principais Recursos:
+
+- Ciclos Personalizáveis: Ajuste os tempos de trabalho e descanso conforme suas preferências e necessidades específicas.
+- Interface Intuitiva: Design limpo e fácil de usar, para que você possa começar a se concentrar imediatamente.
+- Notificações e Alertas: Receba notificações para iniciar ou terminar seus períodos de trabalho e descanso, mantendo você no ritmo certo.
+- Modo Escuro: Reduza o cansaço visual com a opção de modo escuro.
+
+### Por que Escolher o Pomocycle?
+
+O Pomocycle não é apenas um relógio Pomodoro comum. Ele foi criado para oferecer flexibilidade e personalização, permitindo que você crie a rotina perfeita para suas sessões de trabalho. Seja você um estudante, profissional ou freelancer, o Pomocycle é a ferramenta ideal para transformar sua produtividade e alcançar suas metas com eficiência.
+
+Comece hoje a sua jornada rumo a uma produtividade aprimorada com o Pomocycle!
+
+[Clique aqui para acessar!](https://pomocycle.vercel.app)
+
 <h2 id="features">📱 Funcionalidades</h2>
 
 - [x] Pomodoro base
   - [x] A cada 25 minutos de trabalho, 5 minutos de descanso
 - [ ] Configuração de ciclos
+- [ ] Notificações
 
 <h2 id="techs">🛠 Tecnologias</h2>
 
@@ -79,4 +97,4 @@ As seguintes ferramentas foram usadas na construção do projeto:
 👋🏽 Entre em contato!
 
 [![Instagram Badge](https://img.shields.io/badge/-@icefox_kz-1ca0f1?style=flat-square&color=BD2C49&logo=instagram&logoColor=white&link=https://www.instagram.com/icefox_kz/)](https://www.instagram.com/icefox_kz/)
-[![Behance Badge](https://img.shields.io/badge/-Gabriel S. Ferreira-1ca0f1?style=flat-square =blue =behance =white =https://www.behance.net/gabrielsfartwork/)](https://www.behance.net/gabrielsfartwork/)
+[![Behance Badge](https://img.shields.io/badge/-Gabriel&nbsp;S.&nbsp;Ferreira-1ca0f1?style=flat-square&color=blue&logo=behance&logoColor=white&link=https://www.behance.net/gabrielsfartwork/)](https://www.behance.net/gabrielsfartwork/)
